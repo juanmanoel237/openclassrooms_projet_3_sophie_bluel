@@ -53,6 +53,7 @@ async function getCategories() {
   }
 }
 
+// Fonction pour filtrer les travaux par catégories
 function findBycategory(id) {
   const works = JSON.parse(localStorage.getItem("travaux"));
   const workList = works.filter((work) => work.category.id === id);

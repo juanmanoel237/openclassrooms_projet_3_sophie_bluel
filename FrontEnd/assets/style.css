@@ -237,6 +237,34 @@ li:hover {
   justify-content: center;
 }
 
+.subcat {
+  width: 185px;
+  height: 37px;
+  margin-bottom: 30px;
+  text-decoration: none;
+  background: white;
+  border: 1px solid #1d6154;
+  border-radius: 60px;
+  text-align: center;
+  display: block;
+  justify-content: space-between;
+  margin-left: 20px;
+  font-family: "Syne";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 32px;
+  text-align: center;
+  color: #1d6154;
+  background-color: white;
+  cursor: pointer;
+}
+
+.subcat:hover {
+  background-color: #1d6154;
+  color: white;
+}
+
 #introduction {
   display: flex;
   align-items: center;
