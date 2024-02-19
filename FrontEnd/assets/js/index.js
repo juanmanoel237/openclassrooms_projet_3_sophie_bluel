@@ -18,13 +18,6 @@ async function getWorks() {
   }
 }
 
-// Fontion pour afficher tous les projets sous le filtre tous
-
-function showAllWorks() {
-  const works = JSON.parse(localStorage.getItem("travaux"));
-  createDocWorks(works);
-}
-
 // Fonction pour récupérer les différentes catégories de l'API
 
 async function getCategories() {
@@ -61,7 +54,7 @@ function findBycategory(id) {
   createDocWorks(workList);
 }
 
-// Fonction pour afficher dynamiquement les projets dans la
+// Fonction flexible pour afficher dynamiquement les projets
 function createDocWorks(works) {
   const fragment = document.createDocumentFragment();
   const gallery = document.getElementsByClassName("gallery")[0];

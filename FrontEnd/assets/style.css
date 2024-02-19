@@ -216,7 +216,9 @@ li:hover {
 }
 
 #login-main a {
-  margin: 0 auto;
+  justify-content: center;
+  color: black;
+  margin-left: 160px;
 }
 
 #msg-error {
