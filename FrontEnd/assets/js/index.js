@@ -10,8 +10,9 @@ async function getWorks() {
   try {
     const res = await fetch(worksUrl);
     const data = await res.json();
-    let works = data;
+    /*let works = data;*/
     localStorage.setItem("travaux", JSON.stringify(data));
+    const works = JSON.parse(localStorage.getItem("travaux"));
     createDocWorks(works);
   } catch (error) {
     console.log("Error fetching works:", error);

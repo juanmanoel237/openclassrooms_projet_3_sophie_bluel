@@ -24,7 +24,7 @@ form["submit-login"].addEventListener("click", (e) => {
     .then((response) => response.json())
     .then((data) => {
       localStorage.setItem("auth", JSON.stringify(data));
-      const auth = localStorage.getItem("auth");
+      const auth = JSON.parse(localStorage.getItem("auth"));
       if (auth && auth.token) {
         window.location = "index.html";
       } else {

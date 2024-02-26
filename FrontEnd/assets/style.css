@@ -221,7 +221,8 @@ li:hover {
   margin-left: 160px;
 }
 
-#msg-error {
+#msg-error,
+#msg-error-2 {
   display: none;
   flex-direction: row;
   gap: 10px;
