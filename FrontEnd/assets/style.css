@@ -353,3 +353,84 @@ footer nav ul {
   justify-content: flex-end;
   margin: 2em;
 }
+
+/***************Mode édition*****************/
+.mode-edition {
+  position: absolute;
+  font-family: "Work Sans";
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 50px;
+  gap: 20px;
+  background-color: black;
+  top: 0;
+  left: 0;
+}
+
+.edition-logo {
+  display: flex;
+  flex-direction: row;
+  color: #ffffff;
+  font-size: 16px;
+  gap: 12px;
+}
+
+.modifier-projets {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding-bottom: 20px;
+}
+
+.modifier-projets .modifier {
+  padding-bottom: 25px;
+}
+
+#modal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 80%;
+  height: 270vh;
+  padding: 25% 10%;
+  background-color: rgba(0, 0, 0, 0.4);
+  flex-direction: column;
+}
+
+#modalAdd,
+#modalDelete {
+  width: 50%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #818181;
+  border-radius: 10px;
+}
+
+.close {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 25px;
+}
+
+.AddImageContainer h2 {
+  padding-bottom: 30px;
+  padding-top: 20px;
+}
+
+#modal h2 {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  font-family: "Work Sans";
+  color: black;
+  font-weight: 400;
+}

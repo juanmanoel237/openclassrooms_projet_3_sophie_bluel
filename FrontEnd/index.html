@@ -19,6 +19,12 @@
   </head>
   <body>
     <header>
+      <div class="mode-edition">
+        <div class="edition-logo">
+          <i class="fa-regular fa-pen-to-square"></i>
+          <p>Mode édition</p>
+        </div>
+      </div>
       <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>
         <ul>
@@ -54,7 +60,13 @@
         </article>
       </section>
       <section id="portfolio">
-        <h2>Mes Projets</h2>
+        <div class="modifier-projets">
+          <h2>Mes Projets</h2>
+          <div class="modifier" id="editProjet">
+            <i class="fa-regular fa-pen-to-square"></i>
+            <p>modifier</p>
+          </div>
+        </div>
         <div id="category">
           <a href="#" class="subcat active" tabindex="0" onclick="getWorks()"
             >Tous
@@ -84,8 +96,56 @@
         </ul>
       </nav>
     </footer>
+    <!--Début de la Modal-->
+    <section id="modal">
+      <div id="modalDelete">
+        <div class="close" id="close-delete">
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+        <h2>Galerie photo</h2>
+        <div class="gallerymodal"></div>
 
-    <section id="modal"></section>
+        <hr />
+        <input type="submit" value="Ajouter une photo" id="AjoutPhoto" />
+        <div id="supprgalerie">Supprimer la galerie</div>
+      </div>
+
+      <div id="modalAdd">
+        <nav class="navModal">
+          <div class="precedent">
+            <i class="fa-solid fa-arrow-left-long"></i>
+          </div>
+          <div class="close" id="close-add">
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+        </nav>
+
+        <div class="AddImageContainer">
+          <h2>Ajout Photo</h2>
+          <form id="add-form" action="POST" enctype="multipart/form-data">
+            <div class="AddPhotoContainer">
+              <div id="previewImage"></div>
+              <div id="previewDetails">
+                <i class="fa-regular fa-image"></i>
+                <label for="imageUpload" id="btnImage">+ Ajouter photo</label>
+                <input
+                  type="file"
+                  accept=".pnj, .jpg, .jpeg"
+                  id="imageUpload"
+                />
+                <span>jpg, png : 4mo max</span>
+              </div>
+            </div>
+
+            <div class="AddDetails">
+              <label>Titre</label>
+              <input type="text" name="titre" id="titreAdd" required />
+              <label>Catégorie</label>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
 
     <script src="./assets/js/index.js"></script>
     <script src="./assets/js/tokenCon.js"></script>
