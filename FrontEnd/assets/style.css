@@ -356,11 +356,12 @@ footer nav ul {
 
 /***************Mode édition*****************/
 .mode-edition {
+  display: flex;
+  display: none;
   position: absolute;
   font-family: "Work Sans";
   align-items: center;
   justify-content: center;
-  display: flex;
   flex-direction: row;
   width: 100%;
   height: 50px;
@@ -389,9 +390,11 @@ footer nav ul {
 
 .modifier-projets .modifier {
   padding-bottom: 25px;
+  display: none;
 }
 
 #modal {
+  display: none;
   position: absolute;
   left: 0;
   top: 0;
@@ -404,6 +407,7 @@ footer nav ul {
 
 #modalAdd,
 #modalDelete {
+  display: none;
   width: 50%;
   height: auto;
   display: flex;
@@ -412,7 +416,7 @@ footer nav ul {
   padding: 20px;
   background-color: #ffffff;
   border: 1px solid #818181;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .close {
@@ -433,4 +437,38 @@ footer nav ul {
   font-family: "Work Sans";
   color: black;
   font-weight: 400;
+}
+
+#AjoutPhoto,
+#validerAjout {
+  padding: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Syne";
+  border: none;
+}
+
+#validerAjout {
+  background-color: #a7a7a7;
+  padding: 8px 0;
+  border: none;
+}
+
+hr {
+  background-color: black;
+  height: 0.5px;
+  width: 80%;
+  margin-top: 45px;
+}
+
+.gallerymodal {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  width: 80%;
+  padding: 2rem 0;
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  justify-items: stretch;
+  align-self: center;
 }

@@ -25,12 +25,12 @@
           <p>Mode édition</p>
         </div>
       </div>
-      <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-      <nav>
+      <h1 id="logo">Sophie Bluel <span>Architecte d'intérieur</span></h1>
+      <nav class="header-nav">
         <ul>
           <li><a href="#portfolio" class="submenu">projets</a></li>
           <li><a href="#contact" class="submenu">contact</a></li>
-          <li><a href="./login.html" class="submenu">login</a></li>
+          <li><a href="login.html" class="submenu">login</a></li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
@@ -107,7 +107,6 @@
 
         <hr />
         <input type="submit" value="Ajouter une photo" id="AjoutPhoto" />
-        <div id="supprgalerie">Supprimer la galerie</div>
       </div>
 
       <div id="modalAdd">
@@ -141,7 +140,15 @@
               <label>Titre</label>
               <input type="text" name="titre" id="titreAdd" required />
               <label>Catégorie</label>
+              <select name="categorie" id="selectCategorie" required>
+                <option value="1">Objets</option>
+                <option value="2">Appartements</option>
+                <option value="3">Hôtels & Restaurants</option>
+              </select>
             </div>
+            <hr />
+
+            <input type="submit" value="Valider" id="validerAjout" />
           </form>
         </div>
       </div>
@@ -149,5 +156,7 @@
 
     <script src="./assets/js/index.js"></script>
     <script src="./assets/js/tokenCon.js"></script>
+    <script src="./assets/js/modal.js"></script>
+    <script src="./assets/js/admin.js"></script>
   </body>
 </html>

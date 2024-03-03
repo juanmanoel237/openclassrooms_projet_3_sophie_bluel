@@ -1,11 +1,15 @@
 // Function pour récupérer l'id d'utilisateur et le token
 
 const getAuth = () => {
-  const token = JSON.parse(localStorage.getItem("auth").token);
-  return "Bearer" + token;
+  const authData = localStorage.getItem("auth");
+  if (authData) {
+    const token = JSON.parse(authData).token;
+    return "Bearer " + token;
+  } else {
+    return null;
+  }
 };
 
 const isConnected = () => {
-  const connection = getAuth() ? true : false;
-  return connection;
+  return !!getAuth(); // Convertit explicitement la valeur de retour de getAuth en booléen
 };

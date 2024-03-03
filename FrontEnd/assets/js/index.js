@@ -78,3 +78,27 @@ function createDocWorks(works) {
   });
   gallery.appendChild(fragment);
 }
+
+//Ajout des projets dans la modal
+
+const addWorkModal = () => {
+  const gallerymodal = document.getElementsByClassName("gallerymodal");
+
+  gallerymodal.innerHTML = "";
+
+  const works = JSON.parse(localStorage.getItem("travaux"));
+
+  works.forEach((work) => {
+    const div = document.createElement("div");
+    div.classList.add("gallery-edit-img");
+
+    const img = document.createElement("img");
+    img.src = work.imageUrl;
+    img.crossOrigin = "anonymous";
+    div.appendChild(img);
+
+    const deleteIcon = document.createElement("i");
+    deleteIcon.classList.add("fa", " fa-trash");
+    deleteIcon.dataset.id = work.id;
+  });
+};
