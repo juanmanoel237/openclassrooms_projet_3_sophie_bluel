@@ -10,7 +10,6 @@ async function getWorks() {
   try {
     const res = await fetch(worksUrl);
     const data = await res.json();
-    /*let works = data;*/
     localStorage.setItem("travaux", JSON.stringify(data));
     const works = JSON.parse(localStorage.getItem("travaux"));
     createDocWorks(works);
@@ -100,5 +99,9 @@ const addWorkModal = () => {
     const deleteIcon = document.createElement("i");
     deleteIcon.classList.add("fa", " fa-trash");
     deleteIcon.dataset.id = work.id;
+    div.appendChild(i)
+
+    fragment.appendChild(div)
   });
+  gallerymodal.appendChild(fragment)
 };
