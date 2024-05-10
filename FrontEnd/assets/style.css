@@ -394,7 +394,7 @@ footer nav ul {
 }
 
 #modal {
-  /*display: none;*/
+  display: none;
   position: absolute;
   left: 0;
   top: 0;
@@ -438,8 +438,8 @@ footer nav ul {
   font-weight: 400;
 }
 
-#AjoutPhoto,
-#validerAjout {
+#addPhoto,
+#validAjout {
   padding: 8px 0;
   display: flex;
   justify-content: center;
@@ -461,7 +461,7 @@ hr {
   margin-top: 45px;
 }
 
-.gallerymodal {
+.galleryModal {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   width: 80%;
@@ -470,6 +470,11 @@ hr {
   grid-row-gap: 8px;
   justify-items: stretch;
   align-self: center;
+}
+
+.galleryModal img {
+	height: 8rem;
+	width: 100%;
 }
 
 .navModal{

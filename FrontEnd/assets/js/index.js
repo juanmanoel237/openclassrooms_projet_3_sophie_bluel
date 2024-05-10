@@ -79,29 +79,28 @@ function createDocWorks(works) {
 }
 
 //Ajout des projets dans la modal
-
 const addWorkModal = () => {
-  const gallerymodal = document.getElementsByClassName("gallerymodal");
+  const fragment = document.createDocumentFragment()
+  const galleryModal = document.querySelector(".galleryModal")
+  galleryModal.innerHTML = ""
 
-  gallerymodal.innerHTML = "";
+  const works = JSON.parse(localStorage.getItem('travaux'))
 
-  const works = JSON.parse(localStorage.getItem("travaux"));
+  works.forEach((work)=>{
+    const div = document.createElement('div')
+    div.id = "gallery-edit-img"
 
-  works.forEach((work) => {
-    const div = document.createElement("div");
-    div.classList.add("gallery-edit-img");
+    const img = document.createElement('img')
+    img.src = work.imageUrl
+    img.crossOrigin = 'anonymous'
+    div.appendChild(img)
 
-    const img = document.createElement("img");
-    img.src = work.imageUrl;
-    img.crossOrigin = "anonymous";
-    div.appendChild(img);
-
-    const deleteIcon = document.createElement("i");
-    deleteIcon.classList.add("fa", " fa-trash");
-    deleteIcon.dataset.id = work.id;
+    const i = document.createElement('i')
+    i.setAttribute("class", "fa fa-trash")
+    i.setAttribute("data-id", work.id)
     div.appendChild(i)
 
     fragment.appendChild(div)
-  });
-  gallerymodal.appendChild(fragment)
-};
+  })
+  galleryModal.appendChild(fragment)
+}
