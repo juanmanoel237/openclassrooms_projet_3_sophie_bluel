@@ -32,3 +32,25 @@ const closeGalleryModal = ()=>{
     modalDeleteWork.style.display = "none"
     backgroundModal.style.display = "none"
 }
+
+const openAddWorkModal = ()=>{
+    modalAddWork.style.display = "flex"
+    backgroundModal.style.display = "block"
+}
+
+const closeAddWorkModal = ()=>{
+    modalAddWork.style.display = "none"
+    backgroundModal.style.display = "none"
+}
+
+//OUVRIR LES MODALS
+
+if(openGalleryModalBtn){
+    openGalleryModalBtn.addEventListener("click", openGalleryModal)
+}
+if(modalAddPhoto){
+    modalAddPhoto.addEventListener("click", ()=>{
+        closeGalleryModal()
+        openAddWorkModal()
+    })
+}
