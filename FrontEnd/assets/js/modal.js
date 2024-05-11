@@ -47,10 +47,40 @@ const closeAddWorkModal = ()=>{
 
 if(openGalleryModalBtn){
     openGalleryModalBtn.addEventListener("click", openGalleryModal)
+    closeAddWorkModal()
 }
 if(modalAddPhoto){
     modalAddPhoto.addEventListener("click", ()=>{
         closeGalleryModal()
         openAddWorkModal()
+    })
+}
+
+// FERMER LES MODALS
+
+closeGalleryModalBtn.addEventListener("click",closeGalleryModal)
+closeAddWorkModalBtn.addEventListener("click",closeAddWorkModal)
+
+// FERMER LES MODALS EN CLIQUANT SUR L'ARRIERE PLAN
+
+window.onclick = (e)=>{
+    if(e.target==backgroundModal){
+        closeGalleryModal()
+        closeAddWorkModal()
+    }
+}
+
+// FONCTION POUR LE BOUTON PRECEDENT
+
+previousBtn.addEventListener("click", ()=>{
+    closeAddWorkModal()
+    openGalleryModal()
+})
+
+//FONCTION POUR SUPPRIMER DES PHOTOS
+
+const deletWork = (id)=>{
+    fetch(`http://localhost:5678/api/works/${id}`,{
+        
     })
 }
