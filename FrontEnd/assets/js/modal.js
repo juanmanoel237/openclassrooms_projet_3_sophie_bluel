@@ -2,6 +2,7 @@
 const openGalleryModalBtn = document.querySelector("#editProjet")
 const closeGalleryModalBtn = document.querySelector("#close-delete")
 const modalDeleteWork = document.querySelector("#modalDelete")
+const logoEditionBtn = document.querySelector(".edition-logo")
 
 //VARAIABLES POUR LA MODAL D'AJOUT
 const modalAddWork = document.querySelector("#modalAdd")
@@ -44,6 +45,10 @@ const closeAddWorkModal = ()=>{
 }
 
 //OUVRIR LES MODALS
+if(logoEditionBtn){
+    logoEditionBtn.addEventListener("click", openGalleryModal)
+    closeAddWorkModal()
+}
 
 if(openGalleryModalBtn){
     openGalleryModalBtn.addEventListener("click", openGalleryModal)
@@ -79,8 +84,27 @@ previousBtn.addEventListener("click", ()=>{
 
 //FONCTION POUR SUPPRIMER DES PHOTOS
 
-const deletWork = (id)=>{
-    fetch(`http://localhost:5678/api/works/${id}`,{
-        
+const deletWork = (event, id)=>{
+    fetch('http://localhost:5678/api/works/' + id ,{
+        method : "DELETE",
+        headers : {
+            Accept : 'application/json',
+            'Authorization' : getAuth(),
+            'Content-Type' : 'application/json',
+        },
+        params : {
+            'id' : id
+        }
+    })
+    .then(()=>{
+        const imgDiv = event.target.parentNode
+        imgDiv.remove()
+        works = works.filter(work => {
+            work.id !== id
+        })
+        createDocWorks(works)
+    })
+    .catch((error)=>{
+        console.log('Erreur: ', error);
     })
 }

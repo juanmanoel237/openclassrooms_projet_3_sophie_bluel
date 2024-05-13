@@ -377,6 +377,7 @@ footer nav ul {
   color: #ffffff;
   font-size: 16px;
   gap: 12px;
+  cursor: pointer;
 }
 
 .modifier-projets {
@@ -391,6 +392,7 @@ footer nav ul {
 .modifier-projets .modifier {
   padding-bottom: 25px;
   display: none;
+  cursor: pointer;
 }
 
 #modal {

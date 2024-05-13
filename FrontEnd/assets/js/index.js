@@ -98,6 +98,7 @@ const addWorkModal = () => {
     const i = document.createElement('i')
     i.setAttribute("class", "fa fa-trash")
     i.setAttribute("data-id", work.id)
+    i.addEventListener("click", (event)=> deletWork(event, work.id))
     div.appendChild(i)
 
     fragment.appendChild(div)
