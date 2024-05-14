@@ -99,12 +99,26 @@ const deletWork = (event, id)=>{
     .then(()=>{
         const imgDiv = event.target.parentNode
         imgDiv.remove()
-        works = works.filter(work => {
-            work.id !== id
-        })
-        createDocWorks(works)
+        
     })
     .catch((error)=>{
         console.log('Erreur: ', error);
     })
+}
+
+// FONCTION POUR AJOUTER DES PROJETS
+
+async function sendWorkData(){
+    const postWorkUrl = 'http://localhost:5678/api/works/'
+
+    const res = await fetch(postWorkUrl, {
+        method : 'POST',
+        headers : {
+            'Authorization' : getAuth(),
+        },
+
+        body : data,
+    })
+
+    return res.json()
 }
