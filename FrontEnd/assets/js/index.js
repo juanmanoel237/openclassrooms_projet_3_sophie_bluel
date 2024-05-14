@@ -46,6 +46,23 @@ async function getCategories() {
   }
 }
 
+// FONCTION POUR AFFICHER DYNAMIQUEMENT LES CATEGORIES SUR LE FORMULAIRE
+async function categorySelect(){
+  const selectElement = document.querySelector("#selectCategorie")
+  selectElement.innerHTML = ""
+
+  const categories = JSON.parse(localStorage.getItem('categories'))
+  categories.forEach((category)=>{
+    const option = document.createElement('option')
+    option.value = category.id
+    option.textContent = category.name
+
+    selectElement.appendChild(option)
+  })
+}
+
+window.addEventListener('load', categorySelect());
+
 // Fonction pour filtrer les travaux par catégories
 function findBycategory(id) {
   const works = JSON.parse(localStorage.getItem("travaux"));

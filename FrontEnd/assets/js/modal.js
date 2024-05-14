@@ -108,7 +108,7 @@ const deletWork = (event, id)=>{
 
 // FONCTION POUR AJOUTER DES PROJETS
 
-async function sendWorkData(){
+async function sendWorkData(data){
     const postWorkUrl = 'http://localhost:5678/api/works/'
 
     const res = await fetch(postWorkUrl, {
@@ -122,3 +122,4 @@ async function sendWorkData(){
 
     return res.json()
 }
+
