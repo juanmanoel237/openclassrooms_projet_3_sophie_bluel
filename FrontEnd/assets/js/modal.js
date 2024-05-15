@@ -123,3 +123,14 @@ async function sendWorkData(data){
     return res.json()
 }
 
+// FONCTION POUR GESTION DE L'ENVOI DU FORMULAIRE
+
+async function handleForm(e){
+    e.preventDefault()
+
+    //Vérifier si tous les champs sont remplis
+
+    if(!addProjectForm.checkValidity()){
+        alert()
+    }
+}
