@@ -121,6 +121,7 @@
 
         <div class="AddImageContainer">
           <h2>Ajout Photo</h2>
+          <div id="alert" class="alert alert-success" role="alert"></div>
           <form id="add-form" action="POST" enctype="multipart/form-data">
 
             <div class="AddPhotoContainer">
@@ -142,10 +143,7 @@
               <input type="text" name="titre" id="titleAdd" required />
               <label>Catégorie</label>
               <select name="categorie" id="selectCategorie" required>
-                <!--<option value="1">Objets</option>
-                <option value="2">Appartements</option>
-                <option value="3">Hôtels & Restaurants</option>
-              </select>!-->
+              </select>
             </div>
             <hr />
 

@@ -131,6 +131,34 @@ async function handleForm(e){
     //Vérifier si tous les champs sont remplis
 
     if(!addProjectForm.checkValidity()){
-        alert()
+        alert("Veuillez remplir tous les champs")
+        return
     }
+
+    //Récupérer toutes les valeurs du formulaire
+
+    const file = imageUpload.files[0]
+    const title = addProjectForm.querySelector("#titleAdd").value
+    const category = addProjectForm.querySelector("#selectCategorie").value
+
+    //Créer un objet formData pour envoyer les données
+    
+    const formData = new FormData()
+    formData.append("image", file)
+    formData.append("title", title)
+    formData.append("category", category)
+
+    try{
+        const res = await sendWorkData(formData)
+        console.log(res);
+        const alert = document.querySelector(".alert")
+        alert.innerHTML = "Votre photo a été ajoutée avec succès"
+        alert.style.display = "block"
+        setTimeout(()=>{alert.style.display = "none"}, 5000)
+    }
+     catch(error){
+        console.log("Erreur:", error);
+     }
 }
+
+addProjectForm.addEventListener("submit", handleForm)

@@ -432,6 +432,20 @@ footer nav ul {
   padding-top: 20px;
 }
 
+.alert {
+	position: relative;
+	padding: 0.75rem 1.25rem;
+	margin: 10px 0 10px 0;
+	border: 1px solid transparent;
+	border-radius: 0.25rem;
+}
+.alert-success {
+	display: none;
+	color: #155724;
+	background-color: #d4edda;
+	border-color: #c3e6cb;
+}
+
 #modal h2 {
   display: flex;
   justify-content: center;
