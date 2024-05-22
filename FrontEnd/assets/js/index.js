@@ -49,7 +49,7 @@ async function getCategories() {
 // FONCTION POUR AFFICHER DYNAMIQUEMENT LES CATEGORIES SUR LE FORMULAIRE
 async function categorySelect(){
   const selectElement = document.querySelector("#selectCategorie")
-  selectElement.innerHTML = ""
+  
 
   const categories = JSON.parse(localStorage.getItem('categories'))
   categories.forEach((category)=>{

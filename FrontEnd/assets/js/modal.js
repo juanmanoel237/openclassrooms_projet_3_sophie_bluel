@@ -12,6 +12,8 @@ const closeAddWorkModalBtn = document.querySelector("#close-add")
 
 //VARIABLES POUR UPLOAD UNE IMAGE
 const imageUpload = document.querySelector("#imageUpload")
+const inputTitle = document.getElementById("titleAdd")
+const selectCategory = document.getElementById("selectCategorie")
 const projectUpload = document.querySelector("#previewImage")
 const contentUpload = document.querySelector("#previewDetails")
 const projectSubmit = document.querySelector("#validAjout")
@@ -55,9 +57,10 @@ if(openGalleryModalBtn){
     closeAddWorkModal()
 }
 if(modalAddPhoto){
-    modalAddPhoto.addEventListener("click", ()=>{
+    modalAddPhoto.addEventListener("click", async ()=>{
         closeGalleryModal()
         openAddWorkModal()
+        
     })
 }
 
@@ -204,13 +207,14 @@ async function handleForm(e){
      }
 }
 
-//Fonction pour afficher l'image sélectionnée dans la modal d'ajout
+//Appel de previewImage
 imageUpload.addEventListener("change", function () {
     previewImage();
 });
 
 addProjectForm.addEventListener("submit", handleForm)
 
+//Fonction pour afficher l'image sélectionnée dans la modal d'ajout
 function previewImage() {
     // Vérifie si des fichiers sont sélectionnés
     if (imageUpload.files && imageUpload.files[0]) {
@@ -236,3 +240,32 @@ function previewImage() {
         projectUpload.appendChild(image);
     }
 }
+
+function checkFormCompletion() {
+    const updateStateBtnSubmit = () => {
+      const file = imageUpload.files[0];
+      if (
+        !file ||
+        imageUpload.value === "" ||
+        inputTitle.value.trim() === "" ||
+        selectCategory.value === ""
+      ) {
+        projectSubmit.disabled = true;
+        projectSubmit.style.cursor = "not-allowed";
+        projectSubmit.style.backgroundColor = "#d3d3d3";
+      } else {
+        projectSubmit.disabled = false;
+        projectSubmit.style.cursor = "pointer";
+        projectSubmit.style.backgroundColor = "#1d6154";
+      }
+    };
+    // Ajouter des écouteurs d'événements pour les champs d'entrée et de sélection
+    imageUpload.addEventListener("input", updateStateBtnSubmit);
+    inputTitle.addEventListener("input", updateStateBtnSubmit);
+    selectCategory.addEventListener("change", updateStateBtnSubmit);
+    // Appeler updateSubmitButtonState une première fois pour initialiser l'état du bouton
+    updateStateBtnSubmit();
+  }
+
+  // Appel de la fonction au chargement de la page
+  window.addEventListener("load", checkFormCompletion)
