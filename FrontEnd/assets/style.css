@@ -552,6 +552,17 @@ hr {
   width: 100%;
 }
 
+#previewImage {
+	width: 13rem;
+	display: none;
+	padding-bottom: 18px;
+}
+
+#previewImage img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
 #previewDetails{
   display: flex;
   flex-direction: column;

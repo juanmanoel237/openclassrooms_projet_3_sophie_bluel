@@ -131,7 +131,8 @@ async function sendWorkData(data) {
         const newWorks = await res.json();
 
         // Utilisation des données newWorks
-        addNewWorkModal(newWorks)
+        /*addNewWorkModal(newWorks)*/
+        addWorksGallery(newWorks)
         getWorks()
         addWorkModal()
 
@@ -203,4 +204,35 @@ async function handleForm(e){
      }
 }
 
+//Fonction pour afficher l'image sélectionnée dans la modal d'ajout
+imageUpload.addEventListener("change", function () {
+    previewImage();
+});
+
 addProjectForm.addEventListener("submit", handleForm)
+
+function previewImage() {
+    // Vérifie si des fichiers sont sélectionnés
+    if (imageUpload.files && imageUpload.files[0]) {
+        const reader = new FileReader();
+        const image = new Image();
+        const fileName = imageUpload.files[0].name;
+        // Définit l'action à effectuer lorsque le fichier est chargé
+        reader.onload = event => {
+            image.src = event.target.result;
+            image.alt = fileName.split(".")[0]; // Utilise le nom de fichier comme alt texte
+        };
+        // Masque le contenu de l'upload initial
+        contentUpload.style.display = "none";
+        // Change la couleur de fond du bouton de soumission du projet
+        projectSubmit.style.backgroundColor = "#1D6154";
+        // Affiche l'élément de téléchargement du projet
+        projectUpload.style.display = "block";
+        // Change la couleur de fond de l'aperçu
+        previewBackGround.style.backgroundColor = "#FFFFFF";
+        // Lit le contenu du fichier en tant que URL de données
+        reader.readAsDataURL(imageUpload.files[0]);
+        // Ajoute l'image chargée au conteneur d'upload du projet
+        projectUpload.appendChild(image);
+    }
+}
