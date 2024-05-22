@@ -131,7 +131,9 @@ async function sendWorkData(data) {
         const newWorks = await res.json();
 
         // Utilisation des données newWorks
-        addWorksGallery(newWorks);
+        addNewWorkModal(newWorks)
+        getWorks()
+        addWorkModal()
 
     } catch (error) {
         console.error('Erreur lors de l\'envoi des données:', error);
@@ -139,7 +141,7 @@ async function sendWorkData(data) {
     }
 }
 
-function addWorksGallery(newWork) {
+async function addWorksGallery(newWork) {
     const fragment = document.createDocumentFragment();
     const gallery = document.getElementsByClassName("gallery")[0];
 
