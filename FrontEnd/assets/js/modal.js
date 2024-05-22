@@ -99,6 +99,8 @@ const deletWork = (event, id)=>{
     .then(()=>{
         const imgDiv = event.target.parentNode
         imgDiv.remove()
+
+        getWorks()
         
     })
     .catch((error)=>{
@@ -108,20 +110,58 @@ const deletWork = (event, id)=>{
 
 // FONCTION POUR AJOUTER DES PROJETS
 
-async function sendWorkData(data){
-    const postWorkUrl = 'http://localhost:5678/api/works/'
+async function sendWorkData(data) {
+    const postWorkUrl = 'http://localhost:5678/api/works/';
 
-    const res = await fetch(postWorkUrl, {
-        method : 'POST',
-        headers : {
-            'Authorization' : getAuth(),
-        },
+    try {
+        const res = await fetch(postWorkUrl, {
+            method: 'POST',
+            headers: {
+                'Authorization': getAuth(),
+            },
+            body: data,
+        });
 
-        body : data,
-    })
+        // Vérification du succès de la requête
+        if (!res.ok) {
+            throw new Error('La requête n\'a pas abouti');
+        }
 
-    return res.json()
+        // Extraction des données JSON de la réponse
+        const newWorks = await res.json();
+
+        // Utilisation des données newWorks
+        addWorksGallery(newWorks);
+
+    } catch (error) {
+        console.error('Erreur lors de l\'envoi des données:', error);
+        throw error;
+    }
 }
+
+function addWorksGallery(newWork) {
+    const fragment = document.createDocumentFragment();
+    const gallery = document.getElementsByClassName("gallery")[0];
+
+    // Création de l'élément figure et ses enfants pour chaque newWork
+    const figure = document.createElement("figure");
+    const div = document.createElement("div");
+    const img = document.createElement("img");
+
+    img.src = newWork.imageUrl;
+    img.crossOrigin = "anonymous";
+
+    const caption = document.createElement("figcaption");
+    caption.textContent = newWork.title;
+
+    figure.appendChild(div);
+    div.appendChild(img);
+    div.appendChild(caption);
+    fragment.appendChild(figure);
+
+    gallery.appendChild(fragment);
+}
+
 
 // FONCTION POUR GESTION DE L'ENVOI DU FORMULAIRE
 

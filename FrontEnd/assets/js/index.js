@@ -83,7 +83,7 @@ function createDocWorks(works) {
     const img = document.createElement("img");
 
     img.src = work.imageUrl;
-    img.crossOrigin = "anonymus";
+    img.crossOrigin = "anonymous";
 
     const caption = document.createElement("figcaption");
     caption.textContent = work.title;
