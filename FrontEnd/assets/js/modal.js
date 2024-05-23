@@ -42,7 +42,6 @@ const openAddWorkModal = ()=>{
 }
 
 const closeAddWorkModal = ()=>{
-    resetInputs()
     modalAddWork.style.display = "none"
     backgroundModal.style.display = "none"
 }
@@ -67,13 +66,20 @@ if(modalAddPhoto){
 
 // FERMER LES MODALS
 
-closeGalleryModalBtn.addEventListener("click",closeGalleryModal)
-closeAddWorkModalBtn.addEventListener("click",closeAddWorkModal)
+closeGalleryModalBtn.addEventListener("click",()=>{
+    resetForm()
+    closeGalleryModal()
+})
+closeAddWorkModalBtn.addEventListener("click",()=>{
+    resetForm()
+    closeAddWorkModal()
+})
 
 // FERMER LES MODALS EN CLIQUANT SUR L'ARRIERE PLAN
 
 window.onclick = (e)=>{
     if(e.target==backgroundModal){
+        resetForm()
         closeGalleryModal()
         closeAddWorkModal()
     }
@@ -82,7 +88,7 @@ window.onclick = (e)=>{
 // FONCTION POUR LE BOUTON PRECEDENT
 
 previousBtn.addEventListener("click", ()=>{
-    resetInputs()
+    resetForm()
     closeAddWorkModal()
     openGalleryModal()
 })
@@ -138,8 +144,8 @@ async function sendWorkData(data) {
         // Utilisation des données newWorks
         /*addNewWorkModal(newWorks)*/
         addWorksGallery(newWorks)
-        getWorks()
-        addWorkModal()
+        /*getWorks()*/
+        /*addWorkModal()*/
 
 
     } catch (error) {
@@ -204,7 +210,7 @@ async function handleForm(e){
         alert.innerHTML = "Votre photo a été ajoutée avec succès"
         alert.style.display = "block"
         setTimeout(()=>{alert.style.display = "none"}, 3000)
-        resetInputs()
+        resetForm()
     }
      catch(error){
         console.log("Erreur:", error);
@@ -243,10 +249,8 @@ function previewImage() {
         // Ajoute l'image chargée au conteneur d'upload du projet
         projectUpload.appendChild(image);
     }
-}
-
+}//Fonction pour vérifier si tous les champs sont remplis avant l'envoi du form
 document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("add-form");
     const imageUpload = document.getElementById("imageUpload");
     const inputTitle = document.getElementById("titleAdd");
     const selectCategory = document.getElementById("selectCategorie");
@@ -268,25 +272,39 @@ document.addEventListener("DOMContentLoaded", () => {
         submitButton.style.backgroundColor = "#1D6154";
       }
     }
-  
     // Ajouter des écouteurs d'événements pour les champs d'entrée et de sélection
     imageUpload.addEventListener("change", checkFormCompletion);
     inputTitle.addEventListener("input", checkFormCompletion);
     selectCategory.addEventListener("change", checkFormCompletion);
-  
     // Appeler checkFormCompletion une première fois pour initialiser l'état du bouton
     checkFormCompletion();
   });
   
+// Fonction pour réinitialiser le formulaire
+function resetForm() {
+    const form = document.getElementById("add-form");
+    const imageUpload = document.getElementById("imageUpload");
+    const submitButton = document.getElementById("validAjout");
+    const icon = document.querySelector('#previewDetails i');
+    const photoContainer = document.querySelector(".AddPhotoContainer")
+    // Réinitialiser les champs du formulaire
+    form.reset();
+    // Réinitialiser l'aperçu de l'image
+    document.getElementById("previewImage").innerHTML = "";
+    document.getElementById("previewDetails").style.display = "flex";
+    photoContainer.style.display = "flex"
+    photoContainer.style.backgroundColor = "#E8F1F6"
+    icon.style.disabled = "flex"
 
-function resetInputs(){
-    const previewDetails = document.getElementById("previewDetails")
-    projectUpload.style.display = "none"
-    previewDetails.style.display = "flex"
-    inputTitle.value =""
-    selectCategory.value=""
-    imageUpload.value=""
-    projectSubmit.disabled = true;
-    projectSubmit.style.cursor = "not-allowed";
-    projectSubmit.style.backgroundColor = "#d3d3d3";
-}
+    // Désactiver le bouton de soumission
+    submitButton.disabled = true;
+    submitButton.style.cursor = "not-allowed";
+    submitButton.style.backgroundColor = "#d3d3d3";
+    // Réinitialiser d'autres éléments visuels si nécessaire
+    const projectUpload = document.getElementById("projectUpload");
+    if (projectUpload) {
+      projectUpload.style.display = "none";
+    }
+  }
+  
+  
