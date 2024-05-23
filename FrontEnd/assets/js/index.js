@@ -3,6 +3,7 @@ const worksUrl = "http://localhost:5678/api/works";
 
 getWorks();
 getCategories();
+displayBtnFilter()
 
 // Fonction pour récupérer les différents travaux de la bdd
 
@@ -27,40 +28,47 @@ async function getCategories() {
 
     //On garde les données dans la mémoire locale du navigateur
     localStorage.setItem("categories", JSON.stringify(data));
-
-    const fragment = document.createDocumentFragment();
-    // On fait une boucle forEach pour afficher
-    //dynamiquement les differentes catégories avec leurs liens
-    data.forEach((category) => {
-      const link = document.createElement("a");
-      link.textContent = category.name;
-      link.classList.add("subcat");
-      link.setAttribute("tabindex", "0");
-      link.className.replace("active", "");
-      link.addEventListener("click", () => findBycategory(category.id));
-      fragment.appendChild(link);
-    });
-    document.getElementById("category").appendChild(fragment);
   } catch (error) {
     console.log("Error fetching categories:", error);
   }
 }
 
+function displayBtnFilter(){
+  const divBtn = document.querySelector("#category")
+  const gallery = document.querySelector(".gallery")
+  const btnAll = document.createElement("a")
+  btnAll.classList.add("subcat")
+  btnAll.innerText = "TOUS"
+  divBtn.appendChild(btnAll)
+  btnAll.addEventListener("click",()=>{
+    getWorks()
+  })
+
+  const fragment = document.createDocumentFragment();
+  const categories = JSON.parse(localStorage.getItem("categories"))
+  categories.forEach((category) => {
+    const link = document.createElement("a");
+    link.textContent = category.name;
+    link.classList.add("subcat");
+    link.setAttribute("tabindex", "0");
+    link.addEventListener("click", () => findBycategory(category.id));
+    fragment.appendChild(link);
+  });
+  divBtn.appendChild(fragment)
+
+}
+
 // FONCTION POUR AFFICHER DYNAMIQUEMENT LES CATEGORIES SUR LE FORMULAIRE
 async function categorySelect(){
   const selectElement = document.querySelector("#selectCategorie")
-  
-
   const categories = JSON.parse(localStorage.getItem('categories'))
   categories.forEach((category)=>{
     const option = document.createElement('option')
     option.value = category.id
     option.textContent = category.name
-
     selectElement.appendChild(option)
   })
 }
-
 window.addEventListener('load', categorySelect());
 
 // Fonction pour filtrer les travaux par catégories

@@ -200,7 +200,8 @@ async function handleForm(e){
         const alert = document.querySelector(".alert")
         alert.innerHTML = "Votre photo a été ajoutée avec succès"
         alert.style.display = "block"
-        setTimeout(()=>{alert.style.display = "none"}, 5000)
+        setTimeout(()=>{alert.style.display = "none"}, 3000)
+        resetInputs()
     }
      catch(error){
         console.log("Erreur:", error);
@@ -269,3 +270,15 @@ function checkFormCompletion() {
 
   // Appel de la fonction au chargement de la page
   window.addEventListener("load", checkFormCompletion)
+
+function resetInputs(){
+    const previewDetails = document.getElementById("previewDetails")
+    projectUpload.style.display = "none"
+    previewDetails.style.display = "flex"
+    inputTitle.value =""
+    selectCategory.value=""
+    imageUpload.value=""
+    projectSubmit.disabled = true;
+    projectSubmit.style.cursor = "not-allowed";
+    projectSubmit.style.backgroundColor = "#d3d3d3";
+}
