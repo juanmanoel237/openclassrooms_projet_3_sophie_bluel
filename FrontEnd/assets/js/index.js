@@ -33,6 +33,7 @@ async function getCategories() {
   }
 }
 
+//Fonction pour afficher dynamiquement les boutons de filtre
 function displayBtnFilter(){
   const divBtn = document.querySelector("#category")
   const gallery = document.querySelector(".gallery")
@@ -57,6 +58,26 @@ function displayBtnFilter(){
   divBtn.appendChild(fragment)
 
 }
+
+function toggleLinkColor(){
+  const linksContainer = document.querySelector("#category")
+
+  //On vérifie si les liens sont présents
+  if(linksContainer){
+    // On ajoute un écouteur d'événement 'click' au conteneur
+    linksContainer.addEventListener("click", (event)=>{
+      //Si la cible du clique est l'un des liens, on retire la classe active de tous les liens
+      if(event.target.tagName === "A"){
+        const links = document.querySelectorAll("a")
+        links.forEach((link)=> link.classList.remove("active"))
+//Ensuite on Active la classe active au "target" c'est-à-dire le lien cliqué
+        event.target.classList.add("active")
+      }
+    })
+  }
+}
+// On appelle la fonction au chargement de la page
+document.addEventListener("DOMContentLoaded", toggleLinkColor)
 
 // FONCTION POUR AFFICHER DYNAMIQUEMENT LES CATEGORIES SUR LE FORMULAIRE
 async function categorySelect(){

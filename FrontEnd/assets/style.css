@@ -263,6 +263,11 @@ li:hover {
   cursor: pointer;
 }
 
+.active{
+  background-color: #1d6154;
+  color: white;
+}
+
 .subcat:hover {
   background-color: #1d6154;
   color: white;
