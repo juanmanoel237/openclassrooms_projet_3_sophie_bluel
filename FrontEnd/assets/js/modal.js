@@ -42,6 +42,7 @@ const openAddWorkModal = ()=>{
 }
 
 const closeAddWorkModal = ()=>{
+    resetInputs()
     modalAddWork.style.display = "none"
     backgroundModal.style.display = "none"
 }
@@ -81,6 +82,7 @@ window.onclick = (e)=>{
 // FONCTION POUR LE BOUTON PRECEDENT
 
 previousBtn.addEventListener("click", ()=>{
+    resetInputs()
     closeAddWorkModal()
     openGalleryModal()
 })
@@ -138,6 +140,7 @@ async function sendWorkData(data) {
         addWorksGallery(newWorks)
         getWorks()
         addWorkModal()
+
 
     } catch (error) {
         console.error('Erreur lors de l\'envoi des données:', error);
@@ -242,34 +245,39 @@ function previewImage() {
     }
 }
 
-function checkFormCompletion() {
-    const updateStateBtnSubmit = () => {
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("add-form");
+    const imageUpload = document.getElementById("imageUpload");
+    const inputTitle = document.getElementById("titleAdd");
+    const selectCategory = document.getElementById("selectCategorie");
+    const submitButton = document.getElementById("validAjout");
+  
+    function checkFormCompletion() {
       const file = imageUpload.files[0];
       if (
         !file ||
-        imageUpload.value === "" ||
         inputTitle.value.trim() === "" ||
         selectCategory.value === ""
       ) {
-        projectSubmit.disabled = true;
-        projectSubmit.style.cursor = "not-allowed";
-        projectSubmit.style.backgroundColor = "#d3d3d3";
+        submitButton.disabled = true;
+        submitButton.style.cursor = "not-allowed";
+        submitButton.style.backgroundColor = "#d3d3d3";
       } else {
-        projectSubmit.disabled = false;
-        projectSubmit.style.cursor = "pointer";
-        projectSubmit.style.backgroundColor = "#1d6154";
+        submitButton.disabled = false;
+        submitButton.style.cursor = "pointer";
+        submitButton.style.backgroundColor = "#1D6154";
       }
-    };
+    }
+  
     // Ajouter des écouteurs d'événements pour les champs d'entrée et de sélection
-    imageUpload.addEventListener("input", updateStateBtnSubmit);
-    inputTitle.addEventListener("input", updateStateBtnSubmit);
-    selectCategory.addEventListener("change", updateStateBtnSubmit);
-    // Appeler updateSubmitButtonState une première fois pour initialiser l'état du bouton
-    updateStateBtnSubmit();
-  }
-
-  // Appel de la fonction au chargement de la page
-  window.addEventListener("load", checkFormCompletion)
+    imageUpload.addEventListener("change", checkFormCompletion);
+    inputTitle.addEventListener("input", checkFormCompletion);
+    selectCategory.addEventListener("change", checkFormCompletion);
+  
+    // Appeler checkFormCompletion une première fois pour initialiser l'état du bouton
+    checkFormCompletion();
+  });
+  
 
 function resetInputs(){
     const previewDetails = document.getElementById("previewDetails")

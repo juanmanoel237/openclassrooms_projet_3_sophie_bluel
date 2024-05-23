@@ -59,23 +59,33 @@ function displayBtnFilter(){
 
 }
 
-function toggleLinkColor(){
-  const linksContainer = document.querySelector("#category")
-
-  //On vérifie si les liens sont présents
-  if(linksContainer){
-    // On ajoute un écouteur d'événement 'click' au conteneur
-    linksContainer.addEventListener("click", (event)=>{
-      //Si la cible du clique est l'un des liens, on retire la classe active de tous les liens
-      if(event.target.tagName === "A"){
-        const links = document.querySelectorAll("a")
-        links.forEach((link)=> link.classList.remove("active"))
-//Ensuite on Active la classe active au "target" c'est-à-dire le lien cliqué
-        event.target.classList.add("active")
-      }
-    })
-  }
+function toggleLinkColor() {
+    // Sélection du conteneur de liens
+    const linkContainer = document.querySelector("#category");
+    // Vérification si le conteneur de liens existe
+    if (linkContainer) {
+        // Sélection de tous les liens à l'intérieur du conteneur
+        const links = linkContainer.querySelectorAll("a");
+        // Ajout de la classe 'active' au premier lien
+        if (links.length > 0) {
+            links[0].classList.add("active");
+        }
+        // Ajout d'un écouteur d'événement 'click' au conteneur
+        linkContainer.addEventListener("click", (event) => {
+            // Vérification si l'élément cliqué est un lien
+            if (event.target.tagName === "A") {
+                // Suppression de la classe 'active' de tous les liens
+                links.forEach((link) => link.classList.remove("active"));
+                // Ajout de la classe 'active' au lien cliqué
+                event.target.classList.add("active");
+            }
+        });
+    }
 }
+
+// Appel de la fonction après le chargement du DOM
+document.addEventListener("DOMContentLoaded", toggleLinkColor);
+
 // On appelle la fonction au chargement de la page
 document.addEventListener("DOMContentLoaded", toggleLinkColor)
 
