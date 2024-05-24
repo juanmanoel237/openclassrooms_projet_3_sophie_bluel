@@ -36,7 +36,6 @@ async function getCategories() {
 //Fonction pour afficher dynamiquement les boutons de filtre
 function displayBtnFilter(){
   const divBtn = document.querySelector("#category")
-  const gallery = document.querySelector(".gallery")
   const btnAll = document.createElement("a")
   btnAll.classList.add("subcat")
   btnAll.innerText = "TOUS"

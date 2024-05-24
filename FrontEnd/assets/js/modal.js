@@ -144,8 +144,8 @@ async function sendWorkData(data) {
         // Utilisation des données newWorks
         /*addNewWorkModal(newWorks)*/
         addWorksGallery(newWorks)
-        /*getWorks()*/
-        /*addWorkModal()*/
+        getWorks()
+        addWorkModal()
 
 
     } catch (error) {
